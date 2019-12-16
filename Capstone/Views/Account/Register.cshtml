@@ -12,16 +12,16 @@
 {
     @Html.LabelFor(user => user.Email)
     @Html.TextBoxFor(user => user.Email)
-
+    <br>
     @Html.LabelFor(user => user.Password)
     @Html.PasswordFor(user => user.Password)
-
+    <br>
     @Html.LabelFor(user => user.ConfirmPassword)
     @Html.PasswordFor(user => user.ConfirmPassword)
-
+    <br>
     @Html.LabelFor(user => user.PhoneNumber)
     @Html.EditorFor(user => user.PhoneNumber)
     @Html.ValidationMessageFor(user => user.PhoneNumber)
-
+    <br>
     <input type="submit" value="Register" />
 }

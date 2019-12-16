@@ -7,6 +7,6 @@ namespace Capstone.Models
         public User()
         {
         }
-
+        public int UserId { get; set; }
     }
 }
