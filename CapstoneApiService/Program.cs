@@ -5,27 +5,18 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace ConsoleApiCall
+namespace CapstoneApiService
 {
   class Program
   {
-    public class Article
-    {
-
-
-    }
-    public class ArticleMultimedia
-    {
-
-    }
 
     static void Main()
     {
-      var apiCallTask = ApiHelper.ApiCall("MY NYT API KEY");
+      var apiCallTask = ApiHelper.ApiCall("");
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-      List<Article> articleList = JsonConvert.DeserializeObject<List<Article>>(jsonResponse["results"].ToString());
+      List<PLACEHOLDER> articleList = JsonConvert.DeserializeObject<List<PLACEHOLDER>>(jsonResponse["results"].ToString());
 
     }
   }
@@ -34,7 +25,7 @@ namespace ConsoleApiCall
   {
     public static async Task<string> ApiCall(string apiKey)
     {
-      RestClient client = new RestClient("https://api.nytimes.com/svc/topstories/v2");
+      RestClient client = new RestClient("");
       RestRequest request = new RestRequest($"home.json?api-key={apiKey}", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;

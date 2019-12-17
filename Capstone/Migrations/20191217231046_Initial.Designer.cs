@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Capstone.Migrations
 {
     [DbContext(typeof(CapstoneContext))]
-    [Migration("20191217164733_new1")]
-    partial class new1
+    [Migration("20191217231046_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,14 +69,22 @@ namespace Capstone.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Capstone.Models.User", b =>
+            modelBuilder.Entity("Capstone.Models.Location", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("LocationId")
                         .ValueGeneratedOnAdd();
 
-                    b.HasKey("UserId");
+                    b.Property<string>("City");
 
-                    b.ToTable("Users");
+                    b.Property<string>("UserId");
+
+                    b.Property<int>("Zip");
+
+                    b.HasKey("LocationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -184,6 +192,13 @@ namespace Capstone.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Capstone.Models.Location", b =>
+                {
+                    b.HasOne("Capstone.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

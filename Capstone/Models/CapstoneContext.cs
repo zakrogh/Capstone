@@ -5,7 +5,7 @@ namespace Capstone.Models
 {
     public class CapstoneContext : IdentityDbContext<ApplicationUser>
   {
-    public DbSet<User> Users { get; set; }
+    public DbSet<Location> Locations { get; set; }
 
     public CapstoneContext(DbContextOptions options) : base(options) { }
   }
