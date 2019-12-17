@@ -57,15 +57,22 @@ namespace Capstone.Controllers
     public async Task<ActionResult> Register (RegisterViewModel model)
     {
         var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
-        IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-        if (result.Succeeded)
+        if(this.ModelState.IsValid)
         {
-            return RedirectToAction("Index");
+          IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+          if (result.Succeeded)
+          {
+              return RedirectToAction("Index");
+          }
+          else
+          {
+              return View();
+          }
         }
-        else
-        {
-            return View();
+        else{
+          return View();
         }
+
     }
   }
 }
