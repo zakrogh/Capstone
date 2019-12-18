@@ -37,7 +37,7 @@ namespace Capstone.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Location location, int CategoryId)
+    public async Task<ActionResult> Create(Location location, int LocationId)
     {
         var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var currentUser = await _userManager.FindByIdAsync(userId);

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Capstone.Models;
 using System.Threading.Tasks;
 using Capstone.ViewModels;
+using System.Security.Claims;
+using System.Linq;
 
 namespace Capstone.Controllers
 {
@@ -19,9 +21,12 @@ namespace Capstone.Controllers
         _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-        return View();
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userLocations = _db.Locations.Where(entry => entry.User.Id == currentUser.Id);
+      return View(userLocations);
     }
 
     [HttpPost]

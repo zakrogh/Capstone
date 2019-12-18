@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Capstone.Models.Location
+
+<h4>Add a new location</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Zip)
+    @Html.TextBoxFor(model => model.Zip)
+
+    @Html.LabelFor(model => model.City)
+    @Html.TextBoxFor(model => model.City)
+
+    <input type="submit" value="Add new location" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all items", "Index")</p>
