@@ -17,6 +17,7 @@
       {
         <li>@Html.ActionLink($"{location.Zip}", "Details", new { id = location.LocationId })</li>
       }
+      <p>@Html.ActionLink("Add new location", "Create", "Location")</p>
       <input type="submit" class="btn btn-info" value="Logout" />
     }
 }
